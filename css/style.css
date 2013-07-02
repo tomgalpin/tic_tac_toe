@@ -1,0 +1,55 @@
+body {
+  background-color: gray;
+}
+#navbar {
+  height: 100px;
+  width: 660px;
+  margin: 20px auto;
+}
+
+#player_one_status,
+#player_two_status {
+  border: 1px solid black;
+  height: 100px;
+  width: 298px;
+  display: block;
+  float: left;
+  border-radius: 10px;
+}
+
+#navbar h1 {
+  color: black;
+  font-size: 40px;
+  font-weight: bold;
+  margin: 25px 10px 0 80px;
+}
+
+#player_one_status {
+  margin-right: 30px;
+}
+
+#player_two_status {
+  margin-left: 30px;
+}
+
+.your_turn {
+  background-color: #FFFF66;
+}
+
+#board {
+  width: 366px;
+  height: 366px;
+  overflow: hidden;
+  border: 1px solid black;
+  margin: 100px auto;
+  border-radius: 10px;
+}
+
+#board .tile {
+  width: 120px;
+  height: 120px;
+  border: 1px solid black;
+  display: block;
+  float:left;
+  font-size: 100px;
+}
