@@ -30,9 +30,9 @@ $(document).ready(function(){
 
   var pass_tile_id = function(tile) {
     if (player1.hasClass('your_turn')) {
-      (player1_array).push(tile.attr('id'));
+      (player1_array).push(parseInt(tile.attr('id')));
     } else {
-      (player2_array).push(tile.attr('id'));
+      (player2_array).push(parseInt(tile.attr('id')));
     }
     // console.log('player1:' + player1_array);
     // console.log('player2:' + player2_array);
@@ -48,14 +48,33 @@ $(document).ready(function(){
         });
         if (counter == 3) {
            // match
-            console.log('winner');
-            console.log(counter);
-        } else {
-            // console.log('nope')
-            console.log(counter);
+           handle_winner();
+
         }
     });
   };
+
+  var new_game = function() {
+    // refresh the page to begin a new game
+    window.location.href = window.location.href;
+  };
+
+  var handle_winner = function() {
+    if(confirm("You won!")) {
+      new_game();
+    }
+  }
+
+  var handle_tie = function() {
+    if(confirm("This is a tie game.  Click Ok to restart"))
+      new_game();
+  }
+
+  var check_tie = function() {
+    if (check_winner != handle_winner && (player1_array.length + player2_array.length == 9)) {
+      handle_tie();
+    }
+  }
 
   var move = function(){
     $('.tile').on('click', function() {
@@ -68,15 +87,20 @@ $(document).ready(function(){
         pass_tile_id(tile);
         check_winner(player1_array);
         check_winner(player2_array);
+        check_tie(0);
 
       // this is player one's turn
       if (player2.hasClass("")) {
+          player2.fadeTo('fast', 1);
           player2.addClass('your_turn');
           player1.removeClass('your_turn');
+          player1.fadeTo('slow', 0.5);
         } else {
           // this is player two's turn
+          player1.fadeTo('fast', 1);
           player2.removeClass('your_turn');
           player1.addClass('your_turn');
+          player2.fadeTo('slow', 0.5);
         }
       }
     });
@@ -96,3 +120,4 @@ move();
 
 
 });
+
